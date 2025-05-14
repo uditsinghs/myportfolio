@@ -6,6 +6,8 @@ export const isAuthenticated = async (req, res, next) => {
     const { token } = req.cookies;
 
     // Check if token is present
+    console.log("token",token);
+    
     if (!token) {
       return res.status(401).json({
         message: "Invalid token",
@@ -30,8 +32,7 @@ export const isAuthenticated = async (req, res, next) => {
         success: false,
       });
     }
-
-    // Attach user to request object for further use
+  // Attach user to request object for further use
     req.user = user;
     next(); // Proceed to the next middleware or route handler
   } catch (error) {

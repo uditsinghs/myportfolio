@@ -11,7 +11,7 @@ import timelineRouter from "./routes/timeline.route.js";
 import softwareApplicationRouter from "./routes/softwareApplication.route.js";
 import skillRouter from "./routes/skill.route.js";
 import projectRouter from "./routes/project.route.js";
-import path from "path";
+
 
 // create instance of express
 const app = express();
@@ -29,7 +29,11 @@ cloudinary.v2.config({
 app.use(express.json());
 app.use(
   cors({
-    origin: [process.env.PORTFOLIO_URL, process.env.DASHBOARD_URL],
+    origin: [
+      "http://localhost:5173", // for local testing
+      process.env.PORTFOLIO_URL,
+      process.env.DASHBOARD_URL,
+    ],
     methods: ["GET", "DELETE", "PUT", "POST"],
     credentials: true,
   })
@@ -54,11 +58,6 @@ app.use("/api/v1/project", projectRouter);
 // connect to the database
 connectDb();
 
-// // Serve frontend static files
-// app.use(express.static(path.join(_dirname, "Frontend", "dist")));
-// app.get("*", (req, res) => {
-//   res.sendFile(path.resolve(_dirname, "Frontend", "dist", "index.html"));
-// });
 
 // start the server
 const port = process.env.PORT || 5000;
