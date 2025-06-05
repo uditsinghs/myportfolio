@@ -32,7 +32,7 @@ app.use(
     origin: [
       "http://localhost:5173", // for local testing
       process.env.PORTFOLIO_URL,
-      process.env.DASHBOARD_URL,
+      process.env.DASHBOARD_URL || "https://uditportfolio-dashboard.netlify.app",
     ],
     methods: ["GET", "DELETE", "PUT", "POST"],
     credentials: true,
